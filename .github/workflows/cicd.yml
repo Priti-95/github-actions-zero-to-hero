@@ -1,7 +1,18 @@
 ---
 name: CICD
 on:
-  workflow_dispatch: null
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: This is the environment value where this workflow runs
+        default: 'dev'
+        required: true
+        type: choice
+        options:
+          - dev
+          - prod
+          - staging
+      
 jobs:
   code:
     runs-on: ubuntu-latest
@@ -21,6 +32,7 @@ jobs:
       - name: Test the container
         run: echo "Testing the container"
   deploy:
+    if: inputs.environment == 'dev'
     needs: [test, build]
     runs-on: ubuntu-latest
     steps:
