@@ -10,7 +10,7 @@ jobs:
         steps:
             - name: checkout code
               uses: actions/checkout@v4
-              
+
             - name: setup python 3.14
               uses: actions/setup-python@v5
               with:
@@ -23,4 +23,6 @@ jobs:
 
             - name: run linter
               run: flake8 app.py
+
+              
 
