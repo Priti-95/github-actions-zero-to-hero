@@ -10,8 +10,11 @@ jobs:
             - name: checkout code
               uses: actions/checkout@v4
 
-            - name: Clean Docker cache       
+            - name: Clean Docker cache          
               run: docker system prune -f
 
             - name: Deploy with Docker Compose
               run: docker compose down && docker compose up --build --no-cache -d
+
+            - name: Verify container is running
+              run: docker ps
