@@ -14,6 +14,8 @@ jobs:
               run: docker system prune -f
 
             - name: Deploy with Docker Compose
+              env:
+                DOCKERHUB_USER: ${{ vars.DOCKERHUB_USER }}
               run: |
                 docker compose down
                 docker compose build --no-cache
